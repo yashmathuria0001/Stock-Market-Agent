@@ -97,6 +97,10 @@ The frontend will be running on: `http://localhost:5173`
   "detailed_analysis": "Key technical levels indicate potential entry and exit points."
 }
 ```
+<img src="/readmephotos/Screenshot 2025-03-25 212331.png" alt="Stock Analysis" width="600">
+<img src="/readmephotos/Screenshot 2025-03-25 212556.png" alt="Stock Analysis" width="600">
+<img src="/readmephotos/Screenshot 2025-03-25 212612.png" alt="Stock Analysis" width="600">
+
 
 ---
 
