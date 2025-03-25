@@ -135,5 +135,5 @@ The frontend will be running on: `http://localhost:5173`
 ---
 
 ## Contributing
-Feel free to fork and contribute to the project! 🚀
+Feel free to fork and contribute to the project! 
 
