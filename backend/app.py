@@ -7,18 +7,18 @@ from dotenv import load_dotenv
 import json
 import re
 import requests
-# ✅ Load environment variables from .env file
+#  Load environment variables from .env file
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# ✅ Initialize Flask App
+#  Initialize Flask App
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend requests
 
-# ✅ Initialize Gemini AI
+#  Initialize Gemini AI
 llm = GoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=GEMINI_API_KEY)
 
-# ✅ Stock Functions
+#  Stock Functions
 def get_stock_price(ticker: str) -> dict:
     try:
         ticker = ticker.strip().upper()  # Clean input
@@ -56,7 +56,7 @@ def get_stock_range(ticker: str) -> dict:
         high_price = history["High"].max()
         low_price = history["Low"].min()
 
-        # 🔹 AI-Powered Price Range Analysis
+        #AI-Powered Price Range Analysis
         prompt = f"""
         Determine the support and resistance levels for {ticker}.
 
@@ -168,7 +168,7 @@ def analyze_stock(ticker: str) -> dict:
         # AI Response
         ai_response = llm.invoke(prompt).strip()
 
-        # ✅ Extract JSON Using Regex
+        # Extract JSON Using Regex
         match = re.search(r'\{.*\}', ai_response, re.DOTALL)
         if match:
             response_dict = json.loads(match.group(0))
@@ -217,7 +217,7 @@ def compare_stocks(ticker1: str, ticker2: str):
         return {"error": f"Error comparing {ticker1} and {ticker2}: {str(e)}"}
 
 
-# ✅ Unified API: Process Query and Return Formatted Response
+#  Unified API: Process Query and Return Formatted Response
 @app.route("/ask_agent", methods=["POST"])
 def ask_agent():
     data = request.json
@@ -226,7 +226,7 @@ def ask_agent():
     if not query:
         return jsonify({"error": "Query is required"}), 400
 
-    # 🔍 AI determines the best function to call
+    #  AI determines the best function to call
     decision_prompt = f"""
     You are a stock market assistant. The user asked: "{query}"
 
@@ -261,7 +261,7 @@ def ask_agent():
 
 
 
-# ✅ Run Flask App
+#  Run Flask App
 if __name__ == "__main__":
     port = int(os.getenv("FLASK_PORT", 5000))  # Get port from .env, default to 5000
     app.run(host="0.0.0.0", port=port, debug=True)
