@@ -142,4 +142,5 @@ def ask_agent():
 
 # ✅ Run Flask App
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.getenv("FLASK_PORT", 5000))  # Get port from .env, default to 5000
+    app.run(host="0.0.0.0", port=port, debug=True)
